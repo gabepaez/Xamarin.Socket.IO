@@ -22,7 +22,7 @@ namespace Xamarin.Socket.IO
 		Timer TimeoutTimer;
 
 		// socket.io handshake data
-		public string SessionID;
+		public string SessionID { get; set; }
 		int HeartbeatTime;
 		int TimeoutTime;
 
