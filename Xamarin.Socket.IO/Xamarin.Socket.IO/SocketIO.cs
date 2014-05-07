@@ -52,8 +52,8 @@ namespace Xamarin.Socket.IO
 		#region Connection Params
 
 		bool Secure { get; set; }
-		string Host { get; set; }
-		int Port { get; set; }
+		public string Host { get; set; }
+		public int Port { get; set; }
 		ConnectionType DefaultConnectionType { get; set; } 
 
 		#endregion
@@ -117,6 +117,11 @@ namespace Xamarin.Socket.IO
 		/// Occurs when socket fails to connect. The error message is passed in the argument
 		/// </summary>
 		public event Action<string> SocketFailedToConnect = delegate {};
+
+		/// <summary>
+		/// Occurs when socket is closed. The enpoint is passed in the argument
+		/// </summary>
+		public event Action SocketHasClosed = delegate {};
 
 		/// <summary>
 		/// Occurs when socket disconnects. The enpoint is passed in the argument
@@ -440,6 +445,7 @@ namespace Xamarin.Socket.IO
 		{
 			Debug.WriteLine ("Socket closed");
 			Connected = false;
+			SocketHasClosed ();
 		}
 
 		void SocketDataReceivedFunction (object o, DataReceivedEventArgs e)
