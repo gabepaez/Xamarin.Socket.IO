@@ -243,6 +243,7 @@ namespace Xamarin.Socket.IO
 						var websocketScheme = Secure ? "wss" : "ws";
 						var websocketUri = string.Format ("{0}://{1}:{2}/{3}/websocket/{4}", websocketScheme, Host, Port, socketIOConnectionString, SessionID);
 						WebSocket = new WebSocket (websocketUri);
+						WebSocket.EnableAutoSendPing = false;
 						AddCallbacksToSocket (ref WebSocket);
 
 						WebSocket.Open ();
